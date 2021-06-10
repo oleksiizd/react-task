@@ -7,44 +7,36 @@ const ReadTxtFile = ({setMas1}) => {
       reader.onload = async (e) => { 
         const text = (e.target.result)
         
-        var mas1 = text.split('\r\n');
-        var mas2 = [];
+        let mas1 = text.split('\r\n');
+        let mas2 = [];
+        let rows = [];
+        let obj = {};
 
         for(let i = 4; i < mas1.length; i++){
         mas1[i-4] = mas1[i].split(' ');
-            for(let j = 0; j < mas1.length; j++){
-                var fmas = mas1[i-4].filter(function(value, index, arr){ 
+            
+                let fmas = mas1[i-4].filter(function(value, index, arr){ 
                     return value !== "";
                 });
-                mas1[i-4]=fmas;
-                mas2[i]=fmas;
-             }
+                mas2[i] = fmas;
+             
         }
-        
-        var mas2_2 = mas2.filter(function (el) {
+        let mas3 = mas2.filter(function (el) {
           return el != null;
         });
 
-        const headData = mas2_2.shift();
+        let headData = mas3[0];
         headData.push('prov')
-        headData.unshift('id');
-
-
-        let rows = [];
-        let obj123 = {};
+        headData.push('id')
         
-        for (let j = 0; j < mas2_2.length; j++){
-          
-          let tempValue = mas2_2[j];
-          tempValue.unshift(j);
+        for (let j = 0; j < mas3.length; j++){
+          let tempValue = mas3[j];
           headData.forEach(function (k, m) {
-            obj123[k] = tempValue[m];
+            obj[k] = tempValue[m];
           })
-         
-          rows.push(obj123);
-          obj123 = {};
+          rows.push(obj);
+          obj = {};
         }
-
        
         setMas1(rows)
       };

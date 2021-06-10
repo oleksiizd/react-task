@@ -13,7 +13,7 @@ import Paper from '@material-ui/core/Paper';
 const styles = theme => ({
   root: {
     width: '75%',
-    marginTop: theme.spacing.unit * 3,
+    marginTop: theme.spacing(3),
     overflowX: 'auto',
     
   },
@@ -24,9 +24,6 @@ const styles = theme => ({
 
 function SimpleTable(props) {
   const { classes, rows } = props;
-
-  
-  //let rows = Object.assign({}, mas);
 
   return (
     <TableContainer component={Paper}>
