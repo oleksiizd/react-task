@@ -7,10 +7,12 @@ import ReadTxtFile from './ReadTxtFile'
 function App() {
   const [rows, setMas] = useState([])
 
+  
+
   return (
     <>
       <ReadTxtFile setMas1={(arr)=>setMas(arr)}/>
-      <JsonButton rows={rows} />
+      <JsonButton rows={rows}  />
       <TableWeather rows={rows} />
           
     </>

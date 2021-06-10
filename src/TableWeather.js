@@ -8,7 +8,6 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-//import ReadTxtFile from './ReadTxtFile';
 
 const styles = theme => ({
   root: {
@@ -61,7 +60,7 @@ function SimpleTable(props) {
 
 SimpleTable.propTypes = {
   classes: PropTypes.object.isRequired,
-  mas: PropTypes.array
+  rows: PropTypes.array
 };
 
 export default withStyles(styles)(SimpleTable);
