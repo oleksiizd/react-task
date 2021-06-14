@@ -1,8 +1,20 @@
 import React from "react";
-import IconButton from "@material-ui/core/IconButton";
+
 import InsertDriveFileIcon from "@material-ui/icons/InsertDriveFile";
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+
+
+const useStyles = makeStyles((theme) => ({
+  
+  input: {
+    display: "none",
+  },
+}));
 
 const ReadTxtFile = ({ setMas1 }) => {
+  const classes = useStyles();
+
   const showFile = async (e) => {
     e.preventDefault();
     const reader = new FileReader();
@@ -29,25 +41,45 @@ const ReadTxtFile = ({ setMas1 }) => {
       objKeys.push("prov");
       objKeys.push("id");
 
-      for (let j = 0; j < mas3.length; j++) {
+      let j = 0;
+      
+      mas3.forEach(function () {
         let tempValue = mas3[j];
-        objKeys.forEach(function (k, m) {
-          obj[k] = tempValue[m];
+        objKeys.forEach(  function (k, m) {
+          obj[k] =  tempValue[m];
         });
         rows.push(obj);
         obj = {};
-      }
+        j++;
+      } );
+      
       setMas1(rows);
     };
     reader.readAsText(e.target.files[0]);
   };
   return (
     <>
-      <div>
-        <input type="file" onChange={(e) => showFile(e)} />
-        <IconButton variant="contained" color="primary" size="medium">
-          <InsertDriveFileIcon />
-        </IconButton>
+      <div className={classes.root}>
+        <input
+          className={classes.input}
+          id="contained-button-file"
+          multiple
+          type="file"
+          onChange={(e) => showFile(e)}
+        />
+        <label htmlFor="contained-button-file">
+          <Button
+            onChange={(e) => showFile(e)}
+            variant="contained"
+            color="primary"
+            component="span"
+            size="large"
+            startIcon={<InsertDriveFileIcon />}
+          >
+            Upload
+          </Button>
+        </label>
+        
       </div>
     </>
   );

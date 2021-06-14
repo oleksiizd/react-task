@@ -1,8 +1,8 @@
 import './App.css';
 import React, {useState} from 'react'
-import TableWeather from './TableWeather'
-import JsonButton from './JsonButton'
-import ReadTxtFile from './ReadTxtFile'
+import TableWeather from './components/TableWeather'
+import JsonButton from './components/JsonButton'
+import ReadTxtFile from './components/ReadTxtFile'
 
 function App() {
   const [rows, setMas] = useState([])
