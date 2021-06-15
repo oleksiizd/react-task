@@ -49,17 +49,6 @@ function ReadTxtFile({ setData }) {
       console.log(objKeys);
       console.log(dataArr);
 
-      /*for (let i = 5; i < mas1.length; i++) {
-        mas1[i - 5] = mas1[i].split(" ");
-        let fmas = mas1[i - 5].filter(function (value) {
-          return value !== "";
-        });
-        mas2[i] = fmas;
-      }
-      let mas3 = mas2.filter(function (el) {
-        return el != null;
-      });*/
-
       let j = 0;
 
       dataArr.forEach(function () {
