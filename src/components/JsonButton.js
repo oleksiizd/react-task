@@ -4,12 +4,12 @@ import InsertDriveFileIcon from "@material-ui/icons/InsertDriveFile";
 
 //double-download bug
 
-export default function JsonButton(props) {
+function JsonButton(props) {
   const { rows } = props;
 
   const eObj = {};
   eObj.root = rows;
-  /*
+
   function downloadObjectAsJson(exportObj, exportName) {
     var dataStr =
       "data:text/json;charset=utf-8," +
@@ -20,7 +20,10 @@ export default function JsonButton(props) {
     downloadAnchorNode.click();
     downloadAnchorNode.remove();
   }
-  */
+
+  function jsonClicked() {
+    console.log("json clicked");
+  }
 
   return (
     <>
@@ -30,10 +33,12 @@ export default function JsonButton(props) {
         color="primary"
         size="large"
         startIcon={<InsertDriveFileIcon />}
-        //onClick={downloadObjectAsJson(eObj, "Task")}
+        onClick={jsonClicked}
       >
         Create JSON
       </Button>
     </>
   );
 }
+
+export default JsonButton;
