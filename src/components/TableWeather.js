@@ -20,19 +20,20 @@ const styles = (theme) => ({
 });
 
 function SimpleTable(props) {
-  const { classes, rows } = props;
+  const { classes, parcedData } = props;
 
   let i = 0;
-  rows.forEach((rowId) => {
+  parcedData.forEach((rowId) => {
     rowId["id"] = i;
     i++;
   });
+  
 
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
         <TableBody>
-          {rows.map((row) => (
+          {parcedData.map((row) => (
             <TableRow key={row.id}>
               <TableCell align="center">{row.yyyy}</TableCell>
               <TableCell align="center">{row.mm}</TableCell>
@@ -52,7 +53,7 @@ function SimpleTable(props) {
 
 SimpleTable.propTypes = {
   classes: PropTypes.object.isRequired,
-  rows: PropTypes.array,
+  parcedData: PropTypes.array,
 };
 
 export default withStyles(styles)(SimpleTable);

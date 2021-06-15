@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ReadTxtFile({ setMas1 }) {
+function ReadTxtFile({ setData }) {
   const classes = useStyles();
 
   const showFile = async (e) => {
@@ -18,39 +18,61 @@ function ReadTxtFile({ setMas1 }) {
     reader.onload = async (e) => {
       const text = e.target.result;
 
-      let mas1 = text.split("\r\n");
-      let mas2 = [];
-      let rows = [];
-      let obj = {};
+      let dataArr = text.split("\r\n");
+      let parcedData = [];
+      let tempObj = {};
 
-      for (let i = 5; i < mas1.length; i++) {
+      dataArr = dataArr.slice(4);
+      console.log(dataArr);
+
+      for (let i = 0; i < dataArr.length; i++) {
+        dataArr[i] = dataArr[i].split(" ");
+        let tempArr = dataArr[i].filter(function (value, index, arr) {
+          return value !== "";
+        });
+        dataArr[i] = tempArr;
+      }
+
+      console.log(dataArr);
+
+      dataArr.forEach(function () {
+        dataArr = dataArr.filter(function (el) {
+          return el != null;
+        });
+      });
+      
+      let objKeys = dataArr[0];
+
+      objKeys.push("prov");
+      objKeys.push("id");
+
+      console.log(objKeys);
+      console.log(dataArr);
+
+      /*for (let i = 5; i < mas1.length; i++) {
         mas1[i - 5] = mas1[i].split(" ");
-        let fmas = mas1[i - 5].filter(function (value, index, arr) {
+        let fmas = mas1[i - 5].filter(function (value) {
           return value !== "";
         });
         mas2[i] = fmas;
       }
       let mas3 = mas2.filter(function (el) {
         return el != null;
-      });
-
-      let objKeys = mas3[0];
-      objKeys.push("prov");
-      objKeys.push("id");
+      });*/
 
       let j = 0;
 
-      mas3.forEach(function () {
-        let tempValue = mas3[j];
+      dataArr.forEach(function () {
+        let tempValue = dataArr[j];
         objKeys.forEach(function (k, m) {
-          obj[k] = tempValue[m];
+          tempObj[k] = tempValue[m];
         });
-        rows.push(obj);
-        obj = {};
+        parcedData.push(tempObj);
+        tempObj = {};
         j++;
       });
 
-      setMas1(rows);
+      setData(parcedData);
     };
     reader.readAsText(e.target.files[0]);
   };

@@ -5,13 +5,13 @@ import JsonButton from "./components/JsonButton";
 import ReadTxtFile from "./components/ReadTxtFile";
 
 function App() {
-  const [rows, setMas] = useState([]);
+  const [parcedData, setData] = useState([]);
 
   return (
     <>
-      <ReadTxtFile setMas1={setMas} />
-      <JsonButton rows={rows} />
-      <TableWeather rows={rows} />
+      <ReadTxtFile setData={setData} />
+      <JsonButton parcedData={parcedData} />
+      <TableWeather parcedData={parcedData} />
     </>
   );
 }

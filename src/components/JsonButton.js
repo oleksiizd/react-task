@@ -2,15 +2,15 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import InsertDriveFileIcon from "@material-ui/icons/InsertDriveFile";
 
-//double-download bug
-
 function JsonButton(props) {
-  const { rows } = props;
+  const { parcedData } = props;
 
   const eObj = {};
-  eObj.root = rows;
+  eObj.root = parcedData;
 
   function downloadObjectAsJson(exportObj, exportName) {
+    exportObj = eObj;
+    exportName = "Task";
     var dataStr =
       "data:text/json;charset=utf-8," +
       encodeURIComponent(JSON.stringify(exportObj, null, 2));
@@ -21,10 +21,6 @@ function JsonButton(props) {
     downloadAnchorNode.remove();
   }
 
-  function jsonClicked() {
-    console.log("json clicked");
-  }
-
   return (
     <>
       <div>JsonButton div</div>
@@ -33,7 +29,7 @@ function JsonButton(props) {
         color="primary"
         size="large"
         startIcon={<InsertDriveFileIcon />}
-        onClick={jsonClicked}
+        onClick={downloadObjectAsJson}
       >
         Create JSON
       </Button>
