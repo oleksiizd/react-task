@@ -18,11 +18,15 @@ function ReadTxtFile({ setData }) {
     reader.onload = async (e) => {
       const text = e.target.result;
 
-      let dataArr = text.split("\r\n");
+      let dataArr = text.split("\n");
+      let inputData = text;
+      console.log(inputData);
+
       let parcedData = [];
       let tempObj = {};
 
-      dataArr = dataArr.slice(4);
+      console.log(dataArr);
+      dataArr = dataArr.slice(5);
       console.log(dataArr);
 
       for (let i = 0; i < dataArr.length; i++) {
@@ -33,8 +37,6 @@ function ReadTxtFile({ setData }) {
         dataArr[i] = tempArr;
       }
 
-      console.log(dataArr);
-
       dataArr.forEach(function () {
         dataArr = dataArr.filter(function (el) {
           return el != null;
@@ -43,11 +45,11 @@ function ReadTxtFile({ setData }) {
       
       let objKeys = dataArr[0];
 
+      console.log(dataArr);
+      console.log(objKeys);
+
       objKeys.push("prov");
       objKeys.push("id");
-
-      console.log(objKeys);
-      console.log(dataArr);
 
       let j = 0;
 
@@ -61,7 +63,7 @@ function ReadTxtFile({ setData }) {
         j++;
       });
 
-      setData(parcedData);
+      setData(parcedData, inputData);
     };
     reader.readAsText(e.target.files[0]);
   };

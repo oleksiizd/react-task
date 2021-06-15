@@ -23,7 +23,6 @@ function JsonButton(props) {
 
   return (
     <>
-      <div>JsonButton div</div>
       <Button
         variant="contained"
         color="primary"
