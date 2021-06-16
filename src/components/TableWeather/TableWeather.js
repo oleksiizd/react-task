@@ -22,18 +22,12 @@ const styles = (theme) => ({
 function SimpleTable(props) {
   const { classes, parcedData } = props;
 
-  let i = 0;
-  parcedData.forEach((rowId) => {
-    rowId["id"] = i;
-    i++;
-  });
-  
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
         <TableBody>
-          {parcedData.map((row) => (
-            <TableRow key={row.id}>
+          {parcedData.map((row, index) => (
+            <TableRow key={index}>
               <TableCell align="center">{row.yyyy}</TableCell>
               <TableCell align="center">{row.mm}</TableCell>
               <TableCell align="center">{row.tmax}</TableCell>

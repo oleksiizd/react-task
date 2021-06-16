@@ -2,6 +2,7 @@ import React from "react";
 import InsertDriveFileIcon from "@material-ui/icons/InsertDriveFile";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+import { ArraySchema } from "./../../validation/ArrayValidation";
 
 const useStyles = makeStyles((theme) => ({
   input: {
@@ -9,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ReadTxtFile({ setData }) {
+function ParseTxtFile({ setData }) {
   const classes = useStyles();
 
   const showFile = async (e) => {
@@ -18,7 +19,6 @@ function ReadTxtFile({ setData }) {
     reader.onload = async (e) => {
       const text = e.target.result;
       let dataArr = text.split("\n");
-      let inputData = text;
       let parcedData = [];
       let tempObj = {};
 
@@ -36,23 +36,32 @@ function ReadTxtFile({ setData }) {
           return el != null;
         });
       });
-      
+
       let objKeys = dataArr[0];
       objKeys.push("prov");
       objKeys.push("id");
 
-      let j = 0;
-      dataArr.forEach(function () {
-        let tempValue = dataArr[j];
-        objKeys.forEach(function (k, m) {
-          tempObj[k] = tempValue[m];
+      dataArr.forEach(function (row) {
+        objKeys.forEach(function (key, value) {
+          tempObj[key] = row[value];
         });
         parcedData.push(tempObj);
         tempObj = {};
-        j++;
       });
 
-      setData(parcedData, inputData);
+      async function checkValidation() {
+        try {
+          const arrIsValid = await ArraySchema.validate(parcedData);
+          const arrIsValid2 = await ArraySchema.isValid(parcedData);
+          console.log(arrIsValid);
+          console.log(arrIsValid2);
+        } catch (err) {
+          console.log(err);
+        }
+      }
+
+      checkValidation();
+      setData(parcedData);
     };
     reader.readAsText(e.target.files[0]);
   };
@@ -64,7 +73,7 @@ function ReadTxtFile({ setData }) {
           id="contained-button-file"
           multiple
           type="file"
-          onChange={(e) => showFile(e)}
+          onChange={showFile}
         />
         <label htmlFor="contained-button-file">
           <Button
@@ -83,4 +92,4 @@ function ReadTxtFile({ setData }) {
   );
 }
 
-export default ReadTxtFile;
+export default ParseTxtFile;

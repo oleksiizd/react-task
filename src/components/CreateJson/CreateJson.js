@@ -11,10 +11,10 @@ function JsonButton(props) {
   function downloadObjectAsJson(exportObj, exportName) {
     exportObj = eObj;
     exportName = "Task";
-    var dataStr =
+    let dataStr =
       "data:text/json;charset=utf-8," +
       encodeURIComponent(JSON.stringify(exportObj, null, 2));
-    var downloadAnchorNode = document.createElement("a");
+    let downloadAnchorNode = document.createElement("a");
     downloadAnchorNode.setAttribute("href", dataStr);
     downloadAnchorNode.setAttribute("download", exportName + ".json");
     downloadAnchorNode.click();
@@ -22,17 +22,15 @@ function JsonButton(props) {
   }
 
   return (
-    <>
-      <Button
-        variant="contained"
-        color="primary"
-        size="large"
-        startIcon={<InsertDriveFileIcon />}
-        onClick={downloadObjectAsJson}
-      >
-        Create JSON
-      </Button>
-    </>
+    <Button
+      variant="contained"
+      color="primary"
+      size="large"
+      startIcon={<InsertDriveFileIcon />}
+      onClick={downloadObjectAsJson}
+    >
+      Create JSON
+    </Button>
   );
 }
 
