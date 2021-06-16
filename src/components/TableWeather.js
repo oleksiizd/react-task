@@ -28,7 +28,6 @@ function SimpleTable(props) {
     i++;
   });
   
-
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
