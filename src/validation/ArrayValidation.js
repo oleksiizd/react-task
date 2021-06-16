@@ -1,17 +1,17 @@
-import * as yup from "yup";
+import { object, string, array, number } from "yup";
 
-export const ArraySchema = yup.object().shape({
-  data: yup.array(
-    yup.object().shape({
-      yyyy: yup.string().required(),
-      mm: yup.string().required(),
-      tmin: yup.string().required(),
-      tmax: yup.string().required(),
-      af: yup.string().required(),
-      rain: yup.string().required(),
-      sun: yup.string().required(),
-      prov: yup.string().required(),
-      id: yup.number().required()
+export const ArraySchema = object().shape({
+  data: array().of(
+    object().shape({
+      yyyy: string().required(),
+      mm: string().required(),
+      tmin: string().required(),
+      tmax: string().required(),
+      af: string().required(),
+      rain: string().required(),
+      sun: string().required(),
+      prov: string(),
+      id: number().required()
     })
   ),
 });
