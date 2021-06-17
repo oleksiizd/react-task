@@ -1,14 +1,8 @@
 import React from "react";
 import InsertDriveFileIcon from "@material-ui/icons/InsertDriveFile";
-import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { ArraySchema } from "./../../validation/ArrayValidation";
-
-const useStyles = makeStyles((theme) => ({
-  input: {
-    display: "none",
-  },
-}));
+import useStyles from "./useStyles";
 
 function ParseTxtFile({ setData }) {
   const classes = useStyles();
@@ -19,7 +13,7 @@ function ParseTxtFile({ setData }) {
     reader.onload = async (e) => {
       const text = e.target.result;
       let dataArr = text.split("\n");
-      let parcedData = [];
+      let parsedData = [];
       let tempObj = {};
 
       dataArr = dataArr.slice(5);
@@ -45,14 +39,14 @@ function ParseTxtFile({ setData }) {
         objKeys.forEach(function (key, value) {
           tempObj[key] = row[value];
         });
-        parcedData.push(tempObj);
+        parsedData.push(tempObj);
         tempObj = {};
       });
 
       async function checkValidation() {
         try {
-          const arrIsValid = await ArraySchema.validate(parcedData);
-          const arrIsValid2 = await ArraySchema.isValid(parcedData);
+          const arrIsValid = await ArraySchema.validate(parsedData);
+          const arrIsValid2 = await ArraySchema.isValid(parsedData);
           console.log(arrIsValid);
           console.log(arrIsValid2);
         } catch (err) {
@@ -61,7 +55,7 @@ function ParseTxtFile({ setData }) {
       }
 
       checkValidation();
-      setData(parcedData);
+      setData(parsedData);
     };
     reader.readAsText(e.target.files[0]);
   };
