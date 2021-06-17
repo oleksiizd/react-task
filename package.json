@@ -1,24 +1,17 @@
 {
-  "name": "taskapi",
+  "name": "testapp",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
-    "@testing-library/jest-dom": "^5.13.0",
-    "@testing-library/react": "^11.2.7",
-    "@testing-library/user-event": "^12.8.3",
-    "body-parser": "^1.19.0",
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "fs": "^0.0.1-security",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
-    "react-validation": "^3.0.7",
-    "web-vitals": "^1.1.2",
-    "write-json-file": "^4.3.0",
-    "yarn": "^1.22.10",
+    "web-vitals": "^1.0.1",
     "yup": "^0.32.9"
   },
   "scripts": {
@@ -44,8 +37,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "morgan": "^1.10.0"
   }
 }
