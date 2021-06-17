@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import TableWeather from "./components/TableWeather/TableWeather";
-import JsonButton from "./components/CreateJson/CreateJson";
+import CreateJson from "./components/CreateJson/CreateJson";
 import ReadTxtFile from "./components/ParseTxtFile/ParseTxtFile";
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <ReadTxtFile setData={setData} />
-      <JsonButton parsedData={parsedData} />
+      <CreateJson parsedData={parsedData} />
       <TableWeather parsedData={parsedData} />
     </>
   );

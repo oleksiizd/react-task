@@ -2,7 +2,9 @@ function useCreateJson(props) {
   const { parsedData } = props;
 
   function downloadObjectAsJson() {
-    let exportObj = parsedData;
+    let eObj = {};
+    eObj.root = parsedData;
+    let exportObj = eObj;
     let exportName = "Task";
     let dataStr =
       "data:text/json;charset=utf-8," +

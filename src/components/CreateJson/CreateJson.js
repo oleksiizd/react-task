@@ -3,9 +3,10 @@ import Button from "@material-ui/core/Button";
 import InsertDriveFileIcon from "@material-ui/icons/InsertDriveFile";
 import useCreateJson from "./useCreateJson";
 
-function JsonButton(props) {
+function CreateJson(props) {
   const { parsedData } = props;
-  const jsonHook = useCreateJson(parsedData);
+
+  let jsonHook = useCreateJson({ parsedData });
 
   return (
     <Button
@@ -20,4 +21,4 @@ function JsonButton(props) {
   );
 }
 
-export default JsonButton;
+export default CreateJson;
