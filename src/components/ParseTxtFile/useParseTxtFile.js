@@ -6,38 +6,29 @@ function useParseTxtFile({ setData }) {
     const reader = new FileReader();
     reader.onload = async (e) => {
       const text = e.target.result;
-      let dataArr = text.split("\n");
+      let splittedData = text.split("\n");
 
-      dataArr = dataArr.slice(5);
+      let slicedData = splittedData.slice(5);
 
-      let b = dataArr.map(function (x) {
-        return x.split(" ");
-      });
-      let c = b.map(function (z) {
-        return z.filter(function (value) {
+      let filteredData = slicedData.map(function (x) {
+        return x.split(" ").filter(function (value) {
           return value !== "";
         });
       });
-      dataArr = c;
 
-      dataArr.forEach(function () {
-        dataArr = dataArr.filter(function (el) {
+      filteredData.forEach(function () {
+        filteredData = filteredData.filter(function (el) {
           return el != null;
         });
       });
 
-      let objKeys = dataArr[0];
-      objKeys.push("prov");
-      objKeys.push("id");
+      const [header, ...data] = filteredData;
+      const objKeys = [...header, "prov"];
 
-      let parsedData = [];
-      let tempObj = {};
-      dataArr.forEach(function (row) {
-        objKeys.forEach(function (key, value) {
-          tempObj[key] = row[value];
-        });
-        parsedData.push(tempObj);
-        tempObj = {};
+      const parsedData = data.map((row) => {
+        return objKeys.reduce((acc, item, i) => {
+          return { ...acc, [item]: row[i] };
+        }, {});
       });
 
       async function checkValidation() {
