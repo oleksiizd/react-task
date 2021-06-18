@@ -8,8 +8,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import useStyles from "./useStyles";
 
-function SimpleTable(props) {
-  const { parsedData } = props;
+function SimpleTable({ parsedData }) {
   const classes = useStyles;
 
   return (

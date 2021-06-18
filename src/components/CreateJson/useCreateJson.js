@@ -1,6 +1,4 @@
-function useCreateJson(props) {
-  const { parsedData } = props;
-
+function useCreateJson({ parsedData }) {
   function downloadObjectAsJson() {
     let exportObj = { root: parsedData };
     let exportName = "Task";

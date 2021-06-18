@@ -4,8 +4,7 @@ import Button from "@material-ui/core/Button";
 import useStyles from "./useStyles";
 import useParseTxtFile from "./useParseTxtFile";
 
-function ParseTxtFile(props) {
-  const { setData } = props;
+function ParseTxtFile({ setData }) {
   let func1 = useParseTxtFile({ setData });
 
   const classes = useStyles();
