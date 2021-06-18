@@ -7,17 +7,18 @@ function useParseTxtFile({ setData }) {
     reader.onload = async (e) => {
       const text = e.target.result;
       let dataArr = text.split("\n");
-      let parsedData = [];
-      let tempObj = {};
 
       dataArr = dataArr.slice(5);
-      for (let i = 0; i < dataArr.length; i++) {
-        dataArr[i] = dataArr[i].split(" ");
-        let tempArr = dataArr[i].filter(function (value, index, arr) {
+
+      let b = dataArr.map(function (x) {
+        return x.split(" ");
+      });
+      let c = b.map(function (z) {
+        return z.filter(function (value) {
           return value !== "";
         });
-        dataArr[i] = tempArr;
-      }
+      });
+      dataArr = c;
 
       dataArr.forEach(function () {
         dataArr = dataArr.filter(function (el) {
@@ -29,6 +30,8 @@ function useParseTxtFile({ setData }) {
       objKeys.push("prov");
       objKeys.push("id");
 
+      let parsedData = [];
+      let tempObj = {};
       dataArr.forEach(function (row) {
         objKeys.forEach(function (key, value) {
           tempObj[key] = row[value];
