@@ -6,7 +6,7 @@ import useCreateJson from "./useCreateJson";
 function CreateJson(props) {
   const { parsedData } = props;
 
-  let useCreateJsonClick = useCreateJson({ parsedData });
+  let clickUseCreateJson = useCreateJson({ parsedData });
 
   return (
     <Button
@@ -14,7 +14,7 @@ function CreateJson(props) {
       color="primary"
       size="large"
       startIcon={<InsertDriveFileIcon />}
-      onClick={useCreateJsonClick}
+      onClick={clickUseCreateJson}
     >
       Create JSON
     </Button>
