@@ -1,6 +1,11 @@
 import { ArraySchema } from "../../validation/ArrayValidation";
 
-function useParseTxtFile({ setData }) {
+import { useDispatch } from "react-redux";
+import addData from "../redux/actions/dataAddAction";
+
+function useParseTxtFile() {
+  const dispatch = useDispatch();
+
   const showFile = async (e) => {
     e.preventDefault();
     const reader = new FileReader();
@@ -37,9 +42,9 @@ function useParseTxtFile({ setData }) {
           console.log(err);
         }
       }
+      dispatch(addData(parsedData));
 
       checkValidation();
-      setData(parsedData);
     };
     reader.readAsText(e.target.files[0]);
   };

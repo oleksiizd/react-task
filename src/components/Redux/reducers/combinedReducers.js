@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import { parsedDataReducer } from "./parsedDataReducer";
+import dataAddReducer from "./dataAddReducer";
 
-const redusers = combineReducers({
-  parsedDataReducer: parsedDataReducer,
+const reducers = combineReducers({
+  storedData: dataAddReducer,
 });
 
-export default redusers;
+export default reducers;

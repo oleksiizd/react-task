@@ -1,4 +1,4 @@
-const parsedDataReducer = (state = [], action) => {
+const dataAddReducer = (state = [], action) => {
   switch (action.type) {
     case "DATA_ADD":
       return (state = action.payload);
@@ -7,4 +7,4 @@ const parsedDataReducer = (state = [], action) => {
   }
 };
 
-export default parsedDataReducer;
+export default dataAddReducer;

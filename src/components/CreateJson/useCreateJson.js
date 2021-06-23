@@ -1,4 +1,7 @@
-function useCreateJson({ parsedData }) {
+import { useSelector } from "react-redux";
+
+function useCreateJson() {
+  const parsedData = useSelector((state) => state.storedData);
   function downloadObjectAsJson() {
     let exportObj = { root: parsedData };
     let exportName = "Task";

@@ -8,8 +8,11 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import useStyles from "./useStyles";
 
-function SimpleTable({ parsedData }) {
+import { useSelector } from "react-redux";
+
+function SimpleTable() {
   const classes = useStyles;
+  const parsedData = useSelector((state) => state.storedData);
 
   return (
     <TableContainer component={Paper}>

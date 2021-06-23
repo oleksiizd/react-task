@@ -1,4 +1,9 @@
 import { createStore } from "redux";
-import redusers from "./reducers/combinedReducers";
+import reducers from "./reducers/combinedReducers";
 
-const store = createStore(redusers, {});
+const myStore = createStore(
+  reducers,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+
+export default myStore;

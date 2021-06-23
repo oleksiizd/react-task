@@ -3,8 +3,8 @@ import Button from "@material-ui/core/Button";
 import InsertDriveFileIcon from "@material-ui/icons/InsertDriveFile";
 import useCreateJson from "./useCreateJson";
 
-function CreateJson({ parsedData }) {
-  let clickUseCreateJson = useCreateJson({ parsedData });
+function CreateJson() {
+  let clickUseCreateJson = useCreateJson();
 
   return (
     <Button
