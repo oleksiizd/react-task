@@ -1,7 +1,8 @@
 import { useSelector } from "react-redux";
+import { getStoredData } from "../../redux/selectors/getStoredData";
 
 function useCreateJson() {
-  const parsedData = useSelector((state) => state.storedData);
+  const parsedData = useSelector(getStoredData);
   function downloadObjectAsJson() {
     let exportObj = { root: parsedData };
     let exportName = "Task";

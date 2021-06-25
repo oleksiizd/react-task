@@ -4,7 +4,7 @@ import InsertDriveFileIcon from "@material-ui/icons/InsertDriveFile";
 import useCreateJson from "./useCreateJson";
 
 function CreateJson() {
-  let clickUseCreateJson = useCreateJson();
+  const clickUseCreateJson = useCreateJson();
 
   return (
     <Button

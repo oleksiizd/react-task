@@ -5,7 +5,7 @@ import useStyles from "./useStyles";
 import useParseTxtFile from "./useParseTxtFile";
 
 function ParseTxtFile() {
-  let startParse = useParseTxtFile();
+  const startParse = useParseTxtFile();
 
   const classes = useStyles();
 
@@ -15,13 +15,13 @@ function ParseTxtFile() {
         <input
           className={classes.input}
           id="contained-button-file"
-          multiples
+          multiple
           type="file"
           onChange={startParse}
         />
         <label htmlFor="contained-button-file">
           <Button
-            onChange={(e) => startParse(e)}
+            onChange={startParse}
             variant="contained"
             color="primary"
             component="span"

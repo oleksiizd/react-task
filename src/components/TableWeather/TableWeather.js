@@ -9,10 +9,11 @@ import Paper from "@material-ui/core/Paper";
 import useStyles from "./useStyles";
 
 import { useSelector } from "react-redux";
+import { getStoredData } from "../../redux/selectors/getStoredData";
 
 function SimpleTable() {
   const classes = useStyles;
-  const parsedData = useSelector((state) => state.storedData);
+  const parsedData = useSelector(getStoredData);
 
   return (
     <TableContainer component={Paper}>
