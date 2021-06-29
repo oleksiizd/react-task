@@ -6,7 +6,7 @@
     "jsx": "react-jsx",
     "noEmit": true,
     "isolatedModules": true,
-    "strict": false,
+    "strict": true,
     "noFallthroughCasesInSwitch": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,

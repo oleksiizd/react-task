@@ -1,15 +1,19 @@
 import { ArraySchema } from "../../validation/ArrayValidation";
 import { useDispatch } from "react-redux";
 import addData from "../../redux/actions/dataAddAction";
+import { ChangeEvent } from "react";
 
 function useParseTxtFile() {
   const dispatch = useDispatch();
 
-  const showFile = async (e) => {
+  const showFile = async (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     const reader = new FileReader();
     reader.onload = async (e) => {
-      const text = e.target.result as string;
+      const text = e.target?.result as string | undefined;
+      if (!text) {
+        return [];
+      }
       const splittedData = text.split("\n").slice(5);
 
       const filteredData: string[][] = splittedData.map(function (x) {
@@ -45,7 +49,10 @@ function useParseTxtFile() {
       }
       checkValidation();
     };
-    reader.readAsText(e.target.files[0]);
+    console.log(e.target.files);
+    if (e.target.files?.length) {
+      reader.readAsText(e.target.files[0]);
+    }
   };
 
   return showFile;
