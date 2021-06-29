@@ -11,7 +11,7 @@ function ParseTxtFile() {
 
   return (
     <>
-      <div className={classes.root}>
+      <div>
         <input
           className={classes.input}
           id="contained-button-file"

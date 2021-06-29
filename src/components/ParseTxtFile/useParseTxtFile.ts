@@ -1,5 +1,4 @@
 import { ArraySchema } from "../../validation/ArrayValidation";
-
 import { useDispatch } from "react-redux";
 import addData from "../../redux/actions/dataAddAction";
 
@@ -10,23 +9,22 @@ function useParseTxtFile() {
     e.preventDefault();
     const reader = new FileReader();
     reader.onload = async (e) => {
-      const text = e.target.result;
+      const text = e.target.result as string;
       const splittedData = text.split("\n").slice(5);
 
-      const filteredData = splittedData.map(function (x) {
+      const filteredData: string[][] = splittedData.map(function (x) {
         return x
           .split(" ")
-          .filter(function (value) {
+          .filter(function (value: string) {
             return value !== "";
           })
-          .filter(function (el) {
+          .filter(function (el: string) {
             return el != null;
           });
       });
-
       const [header, ...data] = filteredData;
-      const objKeys = [...header, "prov"];
-      const parsedData = data.map((row) => {
+      const objKeys: string[] = [...header, "prov"];
+      const parsedData: {}[] = data.map((row) => {
         return objKeys.reduce((acc, item, i) => {
           return { ...acc, [item]: row[i] };
         }, {});

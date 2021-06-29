@@ -1,25 +1,23 @@
 import React from "react";
-import PropTypes from "prop-types";
 import Table from "@material-ui/core/Table";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import useStyles from "./useStyles";
 
 import { useSelector } from "react-redux";
 import { getStoredData } from "../../redux/selectors/getStoredData";
+import { parsedDataObj } from "./TableWeather.types";
 
 function SimpleTable() {
-  const classes = useStyles;
-  const parsedData = useSelector(getStoredData);
+  const parsedData: parsedDataObj = useSelector(getStoredData);
 
   return (
     <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="simple table">
+      <Table aria-label="simple table">
         <TableBody>
-          {parsedData.map((row, index) => (
+          {parsedData.map((row: parsedDataObj, index: React.Key) => (
             <TableRow key={index}>
               <TableCell align="center">{row.yyyy}</TableCell>
               <TableCell align="center">{row.mm}</TableCell>
@@ -36,9 +34,5 @@ function SimpleTable() {
     </TableContainer>
   );
 }
-
-SimpleTable.propTypes = {
-  parsedData: PropTypes.array,
-};
 
 export default SimpleTable;
