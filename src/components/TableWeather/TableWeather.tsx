@@ -8,10 +8,10 @@ import Paper from "@material-ui/core/Paper";
 
 import { useSelector } from "react-redux";
 import { getStoredData } from "../../redux/selectors/getStoredData";
-import { parsedDataObj } from "./TableWeather.types";
+import { parsedDataObj } from "../parsedDataInterface";
 
 function SimpleTable() {
-  const parsedData: parsedDataObj = useSelector(getStoredData);
+  const parsedData: parsedDataObj[] = useSelector(getStoredData);
 
   return (
     <TableContainer component={Paper}>

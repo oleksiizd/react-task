@@ -1,9 +1,9 @@
 import { useSelector } from "react-redux";
 import { getStoredData } from "../../redux/selectors/getStoredData";
-import { parsedDataObj } from "../TableWeather/TableWeather.types";
+import { parsedDataObj } from "../parsedDataInterface";
 
 function useCreateJson() {
-  const parsedData: parsedDataObj = useSelector(getStoredData);
+  const parsedData: parsedDataObj[] = useSelector(getStoredData);
   function downloadObjectAsJson() {
     let exportObj = { root: parsedData };
     let exportName = "Task";

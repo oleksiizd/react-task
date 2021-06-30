@@ -1,8 +1,9 @@
-import { ActionTypes } from "../actions/action.types";
+import { ActionTypes } from "../actions/enumType";
+import { parsedDataObj } from "../../components/parsedDataInterface";
 
 interface DataAddAction {
   type: ActionTypes.DATA_ADD;
-  payload: {}[];
+  payload: parsedDataObj[];
 }
 
 export type Action = DataAddAction;

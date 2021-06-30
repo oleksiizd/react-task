@@ -2,6 +2,7 @@ import { ArraySchema } from "../../validation/ArrayValidation";
 import { useDispatch } from "react-redux";
 import addData from "../../redux/actions/dataAddAction";
 import { ChangeEvent } from "react";
+import { parsedDataObj } from "../parsedDataInterface";
 
 function useParseTxtFile() {
   const dispatch = useDispatch();
@@ -15,31 +16,24 @@ function useParseTxtFile() {
         return [];
       }
       const splittedData = text.split("\n").slice(5);
-
       const filteredData: string[][] = splittedData.map(function (x) {
-        return x
-          .split(" ")
-          .filter(function (value: string) {
-            return value !== "";
-          })
-          .filter(function (el: string) {
-            return el != null;
-          });
+        return x.split(" ").filter(function (value: string) {
+          return value !== "" && value != null;
+        });
       });
+
       const [header, ...data] = filteredData;
       const objKeys: string[] = [...header, "prov"];
-      const parsedData: {}[] = data.map((row) => {
+      const parsedData: parsedDataObj[] = data.map((row) => {
         return objKeys.reduce((acc, item, i) => {
           return { ...acc, [item]: row[i] };
         }, {});
-      });
+      }) as parsedDataObj[];
 
       async function checkValidation() {
         try {
-          const arrValidate = await ArraySchema.validate(parsedData);
+          ArraySchema.validate(parsedData);
           const arrIsValid = await ArraySchema.isValid(parsedData);
-          console.log(arrValidate);
-          console.log(arrIsValid);
           if (arrIsValid === true) {
             dispatch(addData(parsedData));
           }
@@ -49,7 +43,6 @@ function useParseTxtFile() {
       }
       checkValidation();
     };
-    console.log(e.target.files);
     if (e.target.files?.length) {
       reader.readAsText(e.target.files[0]);
     }

@@ -1,5 +1,5 @@
 import { Action } from "./reducers.types";
-import { ActionTypes } from "../actions/action.types";
+import { ActionTypes } from "../actions/enumType";
 
 const dataAddReducer = (state: [] = [], action: Action) => {
   switch (action.type) {

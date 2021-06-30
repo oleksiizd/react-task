@@ -1,13 +1,10 @@
-import { ActionTypes } from "./action.types";
-import { Action } from "../reducers/reducers.types";
-import { Dispatch } from "redux";
+import { ActionTypes } from "./enumType";
+import { parsedDataObj } from "../../components/parsedDataInterface";
 
-const addData = (argumentData: {}[]) => {
-  return (dispatch: Dispatch<Action>) => {
-    dispatch({
-      type: ActionTypes.DATA_ADD,
-      payload: argumentData,
-    });
+const addData = (argumentData: parsedDataObj[]) => {
+  return {
+    type: ActionTypes.DATA_ADD,
+    payload: argumentData,
   };
 };
 

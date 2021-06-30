@@ -1,7 +1,4 @@
 export interface parsedDataObj {
-  map(
-    arg0: (row: parsedDataObj, index: import("react").Key) => JSX.Element
-  ): import("react").ReactNode;
   yyyy: string;
   mm: string;
   tmin: string;
@@ -11,4 +8,3 @@ export interface parsedDataObj {
   sun: string;
   prov?: string;
 }
-[];

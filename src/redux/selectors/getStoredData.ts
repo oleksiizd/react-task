@@ -1,4 +1,4 @@
-import { parsedDataObj } from "../../components/TableWeather/TableWeather.types";
+import { parsedDataObj } from "../../components/parsedDataInterface";
 
-export const getStoredData = (state: { storedData: parsedDataObj }) =>
+export const getStoredData = (state: { storedData: parsedDataObj[] }) =>
   state.storedData;
