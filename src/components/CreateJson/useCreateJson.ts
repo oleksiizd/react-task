@@ -1,12 +1,8 @@
 import { useSelector } from "react-redux";
-import { RootState } from "../../redux/redux-toolkit/configureStore";
-import { getStoredData } from "../../redux/selectors/getStoredData";
-import { parsedDataObj } from "../../redux/redux-toolkit/parsedDataSlice/parsedDataSlice.types";
+import { getParsedData } from "../../redux/selectors/getStoredData";
 
 function useCreateJson() {
-  const parsedData: parsedDataObj[] = useSelector(
-    (state: RootState) => state.getParsedData.parsedData
-  );
+  const parsedData = useSelector(getParsedData);
   function downloadObjectAsJson() {
     let exportObj = { root: parsedData };
     let exportName = "Task";

@@ -3,7 +3,7 @@ import parsedDataSlice from "./parsedDataSlice/parsedDataSlice";
 
 const store = configureStore({
   reducer: {
-    getParsedData: parsedDataSlice,
+    getStoredData: parsedDataSlice,
   },
 });
 
