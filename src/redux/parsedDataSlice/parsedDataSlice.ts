@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { parsedDataState, parsedDataObj } from "./parsedDataSlice.types";
+import { ParsedDataState, ParsedDataObj } from "./types";
 
-const initialState: parsedDataState = {
+const initialState: ParsedDataState = {
   parsedData: [],
   headerData: [],
 };
@@ -10,7 +10,7 @@ export const parsedDataSlice = createSlice({
   name: "getParsedData",
   initialState,
   reducers: {
-    dataAdd: (state, action: PayloadAction<parsedDataObj[]>) => {
+    dataAdd: (state, action: PayloadAction<ParsedDataObj[]>) => {
       state.parsedData = action.payload;
     },
     headerAdd: (state, action: PayloadAction<string[]>) => {

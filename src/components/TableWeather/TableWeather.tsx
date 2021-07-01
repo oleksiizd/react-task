@@ -8,31 +8,25 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 
 import { useSelector } from "react-redux";
-import { getStoredData } from "../../redux/selectors/getStoredData";
-import { parsedDataObj } from "../../redux/redux-toolkit/parsedDataSlice/parsedDataSlice.types";
-import { RootState } from "../../redux/redux-toolkit/configureStore";
+import { ParsedDataObj } from "../../redux/parsedDataSlice/types";
+import { getParsedData } from "../../redux/selectors/getStoredData";
 
 function SimpleTable() {
-  const parsedData: parsedDataObj[] = useSelector(
-    (state: RootState) => state.getParsedData.parsedData
-  );
-  const headerData: string[] = useSelector(
-    (state: RootState) => state.getParsedData.headerData
-  );
+  const [parsedData, parsedHeader] = useSelector(getParsedData);
   return (
     <TableContainer component={Paper}>
       <Table aria-label="simple table">
         <TableHead>
           <TableRow>
-            {headerData.map((row: string) => (
-              <TableCell size="small" align="center">
+            {parsedHeader.map((row: string, index: React.Key) => (
+              <TableCell size="small" align="center" key={index}>
                 {row}
               </TableCell>
             ))}
           </TableRow>
         </TableHead>
         <TableBody>
-          {parsedData.map((row: parsedDataObj, index: React.Key) => (
+          {parsedData.map((row: ParsedDataObj, index: React.Key) => (
             <TableRow key={index}>
               <TableCell align="center">{row.yyyy}</TableCell>
               <TableCell align="center">{row.mm}</TableCell>

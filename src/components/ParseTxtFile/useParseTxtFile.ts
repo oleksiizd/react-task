@@ -1,12 +1,11 @@
 import { ArraySchema } from "../../validation/ArrayValidation";
 import { useDispatch } from "react-redux";
-import addData from "../../redux/actions/dataAddAction";
 import { ChangeEvent } from "react";
-import { parsedDataObj } from "../../redux/redux-toolkit/parsedDataSlice/parsedDataSlice.types";
+import { ParsedDataObj } from "../../redux/parsedDataSlice/types";
 import {
   dataAdd,
   headerAdd,
-} from "../../redux/redux-toolkit/parsedDataSlice/parsedDataSlice";
+} from "../../redux/parsedDataSlice/parsedDataSlice";
 
 function useParseTxtFile() {
   const dispatch = useDispatch();
@@ -30,11 +29,11 @@ function useParseTxtFile() {
 
       const objKeys: string[] = [...header, "prov"];
 
-      const parsedData: parsedDataObj[] = data.map((row) => {
+      const parsedData = data.map((row) => {
         return objKeys.reduce((acc, item, i) => {
           return { ...acc, [item]: row[i] };
-        }, {});
-      }) as parsedDataObj[];
+        }, <ParsedDataObj>{});
+      });
 
       async function checkValidation() {
         try {
