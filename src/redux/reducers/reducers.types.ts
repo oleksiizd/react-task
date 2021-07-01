@@ -1,9 +1,7 @@
-import { ActionTypes } from "../actions/enumType";
-import { parsedDataObj } from "../../components/parsedDataInterface";
+import { ActionTypes } from "../actions/Action.types";
+import { parsedDataObj } from "../redux-toolkit/parsedDataSlice/parsedDataSlice.types";
 
-interface DataAddAction {
+export interface DataAddAction {
   type: ActionTypes.DATA_ADD;
   payload: parsedDataObj[];
 }
-
-export type Action = DataAddAction;

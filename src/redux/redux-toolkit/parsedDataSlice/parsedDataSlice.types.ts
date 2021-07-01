@@ -1,3 +1,8 @@
+export interface parsedDataState {
+  parsedData: parsedDataObj[];
+  headerData: string[];
+}
+
 export interface parsedDataObj {
   yyyy: string;
   mm: string;

@@ -2,7 +2,11 @@ import { ArraySchema } from "../../validation/ArrayValidation";
 import { useDispatch } from "react-redux";
 import addData from "../../redux/actions/dataAddAction";
 import { ChangeEvent } from "react";
-import { parsedDataObj } from "../parsedDataInterface";
+import { parsedDataObj } from "../../redux/redux-toolkit/parsedDataSlice/parsedDataSlice.types";
+import {
+  dataAdd,
+  headerAdd,
+} from "../../redux/redux-toolkit/parsedDataSlice/parsedDataSlice";
 
 function useParseTxtFile() {
   const dispatch = useDispatch();
@@ -23,7 +27,9 @@ function useParseTxtFile() {
       });
 
       const [header, ...data] = filteredData;
+
       const objKeys: string[] = [...header, "prov"];
+
       const parsedData: parsedDataObj[] = data.map((row) => {
         return objKeys.reduce((acc, item, i) => {
           return { ...acc, [item]: row[i] };
@@ -35,7 +41,8 @@ function useParseTxtFile() {
           ArraySchema.validate(parsedData);
           const arrIsValid = await ArraySchema.isValid(parsedData);
           if (arrIsValid === true) {
-            dispatch(addData(parsedData));
+            dispatch(headerAdd(objKeys));
+            dispatch(dataAdd(parsedData));
           }
         } catch (err) {
           console.log(err);
