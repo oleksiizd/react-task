@@ -1,67 +1,76 @@
 import React from "react";
-import Table from "@material-ui/core/Table";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import { List, AutoSizer } from "react-virtualized";
+import { Table, Column, AutoSizer } from "react-virtualized";
 
 import { useSelector } from "react-redux";
 import { ParsedDataObj } from "../../redux/parsedDataSlice/types";
 import { getParsedData } from "../../redux/selectors/getStoredData";
+import "react-virtualized/styles.css";
 
 function SimpleTable() {
   const [parsedData, parsedHeader] = useSelector(getParsedData);
   return (
     <>
-      <TableContainer component={Paper}>
-        <Table aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              {parsedHeader.map((row: string, index: React.Key) => (
-                <TableCell size="small" align="center" key={index}>
-                  {row}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-        </Table>
-      </TableContainer>
-      <TableContainer
-        component={Paper}
-        style={{
-          width: "100%",
-          height: "50vh",
-        }}
-      >
+      <div style={{ height: 400 }}>
         <AutoSizer>
-          {({ width, height }) => (
-            <List
+          {({ height, width }) => (
+            <Table
               width={width}
               height={height}
-              rowHeight={50}
+              headerHeight={60}
+              rowHeight={60}
               rowCount={parsedData.length}
-              rowRenderer={({ index, style, parent }) => {
-                let row = parsedData[index];
-                return (
-                  <TableRow key={index} style={style}>
-                    <TableCell align="center">{row.yyyy}</TableCell>
-                    <TableCell align="center">{row.mm}</TableCell>
-                    <TableCell align="center">{row.tmax}</TableCell>
-                    <TableCell align="center">{row.tmin}</TableCell>
-                    <TableCell align="center">{row.af}</TableCell>
-                    <TableCell align="center">{row.rain}</TableCell>
-                    <TableCell align="center">{row.sun}</TableCell>
-                    <TableCell align="center">{row.prov}</TableCell>
-                  </TableRow>
-                );
-              }}
-            />
+              rowGetter={({ index }) => parsedData[index]}
+            >
+              <Column
+                width={100}
+                label={parsedHeader[0]}
+                dataKey={parsedHeader[0]}
+              />
+              <Column
+                width={100}
+                label={parsedHeader[1]}
+                dataKey={parsedHeader[1]}
+              />
+              <Column
+                width={100}
+                label={parsedHeader[2]}
+                dataKey={parsedHeader[2]}
+              />
+              <Column
+                width={100}
+                label={parsedHeader[3]}
+                dataKey={parsedHeader[3]}
+              />
+              <Column
+                width={100}
+                label={parsedHeader[4]}
+                dataKey={parsedHeader[4]}
+              />
+              <Column
+                width={100}
+                label={parsedHeader[5]}
+                dataKey={parsedHeader[5]}
+              />
+              <Column
+                width={100}
+                label={parsedHeader[6]}
+                dataKey={parsedHeader[6]}
+              />
+              <Column
+                width={100}
+                label={parsedHeader[7]}
+                dataKey={parsedHeader[7]}
+              />
+            </Table>
           )}
         </AutoSizer>
-      </TableContainer>
+      </div>
     </>
   );
 }
