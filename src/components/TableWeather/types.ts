@@ -21,11 +21,3 @@ export interface IMuiVirtualizedTableProps {
   rowGetter: (row: IRow) => IParsedDataObj;
   rowHeight?: number;
 }
-// export interface IMuiVirtualizedTableProps extends WithStyles<typeof styles> {
-//   columns: IColumnData[];
-//   headerHeight?: number;
-//   onRowClick?: () => void;
-//   rowCount: number;
-//   rowGetter: (row: IRow) => IParsedDataObj;
-//   rowHeight?: number;
-// }

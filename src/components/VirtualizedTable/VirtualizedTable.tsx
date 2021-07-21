@@ -11,18 +11,19 @@ import { IRow } from "../TableWeather/types";
 import useStyles from "../TableWeather/useStyles";
 import { IMuiVirtualizedTableProps } from "../TableWeather/types";
 
-export default function MuiVirtualizedTable(props: IMuiVirtualizedTableProps) {
+export default function MuiVirtualizedTable({
+  columns,
+  onRowClick,
+  ...tableProps
+}: IMuiVirtualizedTableProps) {
   const classes = useStyles();
   const getRowClassName = ({ index }: IRow) => {
-    const { onRowClick } = props;
-
     return clsx(classes.tableRow, classes.flexContainer, {
       [classes.tableRowHover]: index !== -1 && onRowClick != null,
     });
   };
 
   const cellRenderer: TableCellRenderer = ({ cellData, columnIndex }) => {
-    const { columns, onRowClick } = props;
     return (
       <TableCell
         component="div"
@@ -32,9 +33,7 @@ export default function MuiVirtualizedTable(props: IMuiVirtualizedTableProps) {
         variant="body"
         style={{ height: 48 }}
         align={
-          (columnIndex != null && columns[columnIndex].numeric) || false
-            ? "right"
-            : "left"
+          columnIndex != null && columns[columnIndex].numeric ? "right" : "left"
         }
       >
         {cellData}
@@ -46,8 +45,6 @@ export default function MuiVirtualizedTable(props: IMuiVirtualizedTableProps) {
     label,
     columnIndex,
   }: TableHeaderProps & { columnIndex: number }) => {
-    const { columns } = props;
-
     return (
       <TableCell
         component="div"
@@ -58,14 +55,13 @@ export default function MuiVirtualizedTable(props: IMuiVirtualizedTableProps) {
         )}
         variant="head"
         style={{ height: 48 }}
-        align={columns[columnIndex].numeric || false ? "right" : "left"}
+        align={columns[columnIndex].numeric ? "right" : "left"}
       >
         <span>{label}</span>
       </TableCell>
     );
   };
 
-  const { columns, ...tableProps } = props;
   return (
     <AutoSizer>
       {({ height, width }) => (
