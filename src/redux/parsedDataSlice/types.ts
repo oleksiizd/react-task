@@ -1,9 +1,9 @@
-export interface ParsedDataState {
-  parsedData: ParsedDataObj[];
+export interface IParsedDataState {
+  parsedData: IParsedDataObj[];
   headerData: string[];
 }
 
-export interface ParsedDataObj {
+export interface IParsedDataObj {
   yyyy: string;
   mm: string;
   tmin: string;

@@ -1,7 +1,7 @@
 import { ArraySchema } from "../../validation/ArrayValidation";
 import { useDispatch } from "react-redux";
 import { ChangeEvent } from "react";
-import { ParsedDataObj } from "../../redux/parsedDataSlice/types";
+import { IParsedDataObj } from "../../redux/parsedDataSlice/types";
 import {
   dataAdd,
   headerAdd,
@@ -32,7 +32,7 @@ function useParseTxtFile() {
       const parsedData = data.map((row) => {
         return objKeys.reduce((acc, item, i) => {
           return { ...acc, [item]: row[i] };
-        }, <ParsedDataObj>{});
+        }, <IParsedDataObj>{});
       });
 
       async function checkValidation() {
