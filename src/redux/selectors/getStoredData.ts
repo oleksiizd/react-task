@@ -1,10 +1,10 @@
 import { createSelector } from "reselect";
 import { RootState } from "../configureStore";
-import { ParsedDataObj } from "../parsedDataSlice/types";
+import { IParsedDataObj } from "../parsedDataSlice/types";
 
 const selectSelf = (state: RootState) => state;
 
-const combinedData = (state: RootState): [ParsedDataObj[], string[]] => [
+const combinedData = (state: RootState): [IParsedDataObj[], string[]] => [
   state.getStoredData.parsedData,
   state.getStoredData.headerData,
 ];
